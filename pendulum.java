@@ -37,6 +37,9 @@ void setup() {
 
 void draw() {
   image(tracer, 0, 0);
+
+  // Das mit der Maus:
+  
   if (mousePressed) {
     translate(600, 600);
     angle1v = 0;
@@ -78,7 +81,9 @@ void draw() {
         angle2 = -(vecAngle(normalYVec, tempVec));
       }
     }
-    
+
+
+    //
     
     x2 = x1 + sin(angle2)*r2;
     y2 = y1 + cos(angle2)*r2;
@@ -93,12 +98,17 @@ void draw() {
     tracerX = x2;
     tracerY = y2;
   } else {
+
+    // Pendelformeln
+    
     float angle1a = -g * (2*m1 + m2) * sin(angle1) - m2 * g * sin(angle1 - 2*angle2) - 2 * sin(angle1 - angle2) * m2 * (angle2v * angle2v * r2 + angle1v * angle1v * r1 * cos(angle1 - angle2));
     angle1a /= r1 * (2*m1 + m2 - m2*cos(2*angle1-2*angle2));
 
     float angle2a = 2*sin(angle1-angle2)*(angle1v*angle1v*r1*(m1+m2)+g*(m1+m2)*cos(angle1)+angle2v*angle2v*r2*m2*cos(angle1-angle2));
     angle2a /= r2*(2*m1+m2-m2*cos(2*angle1-2*angle2));
 
+    //
+    
     stroke(0);
     strokeWeight(2);
 
@@ -133,6 +143,8 @@ void draw() {
     tracerY = y2;
   }
 }
+
+// Vectorrechnungsoperatoren
 
 float vecAngle(PVector v1, PVector v2) {
   return acos(scalar(v1, v2) / (lengt(v1)*lengt(v2)));
